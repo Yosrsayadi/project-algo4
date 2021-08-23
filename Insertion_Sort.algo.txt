@@ -1,0 +1,29 @@
+PROCEDURE move(VAR arr:ARRAY_OF INTEGER[],position:INTEGER,position_insertion:INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM position TO position_insertion -1 STEP -1  DO
+        arr[i]:=arr[i-1];
+    END_FOR
+END
+ALGORITHM Insertion_Sort
+VAR
+    pos:INTEGER:=0;
+    i,j:INTEGER;
+    tab:ARRAY_OF INTEGER[]:=[5,2,4,6,7,9,11,1,22,19,24,77,55,64,3,0,69];
+BEGIN
+    FOR i FROM 1 TO tab.length STEP 1  DO
+        IF (tab[i] < tab[i-1]) THEN
+            j:=0;
+            WHILE (j< i) DO
+                IF (tab[j] >= tab[i]) THEN
+                move(tab,i,j);
+                tab[j]:=tab[i];
+                BREAK;
+                ELSE
+                j := j+1;
+                END_IF
+            END_WHILE
+        END_IF
+    END_FOR
+END
